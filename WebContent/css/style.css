@@ -158,3 +158,15 @@ pre {
 h3 {
     font-size: larger;
 }
+
+table#project_list th{
+    padding: 10px 2%;
+}
+
+table#project_list .project_title{
+    width: 30%;
+}
+
+table#project_list .project_content{
+    width: 70%;
+}
