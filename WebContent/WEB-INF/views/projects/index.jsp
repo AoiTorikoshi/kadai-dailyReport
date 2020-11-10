@@ -12,7 +12,7 @@
         <table id="project_list">
             <tbody>
                 <tr>
-                    <th class="project_title">タイトル</th>
+                    <th class="project_title">プロジェクト名</th>
                     <th class="project_content">プロジェクト詳細</th>
                 </tr>
                 <c:forEach var="project" items="${projects}" varStatus="status">
