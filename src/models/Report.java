@@ -45,6 +45,10 @@ public class Report {
     @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
+
     @Column(name = "report_date", nullable = false)
     private Date report_date;
 
@@ -75,6 +79,14 @@ public class Report {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 
     public Date getReport_date() {
