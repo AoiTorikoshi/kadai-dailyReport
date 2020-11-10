@@ -32,26 +32,28 @@ public class ProjectsIndexServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
         int page;
-        try{
+        try {
             page = Integer.parseInt(request.getParameter("page"));
-        } catch(Exception e) {
+        } catch (Exception e) {
             page = 1;
         }
 
-        List<Project> projects = em.createNamedQuery("getAllProjects", Project.class).setFirstResult(15 * (page - 1)).setMaxResults(15).getResultList();
+        List<Project> projects = em.createNamedQuery("getAllProjects", Project.class).setFirstResult(15 * (page - 1))
+                .setMaxResults(15).getResultList();
 
-        //long projects_count = (long)em.createNamedQuery("getProjectsCount", Long.class).getSingleResult();
+        //long projects_count = (long) em.createNamedQuery("getProjectsCount", Long.class).getSingleResult();
 
         em.close();
 
         request.setAttribute("projects", projects);
         //request.setAttribute("projects_count", projects_count);
         request.setAttribute("page", page);
-        if(request.getSession().getAttribute("flush") != null){
+        if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");
         }
