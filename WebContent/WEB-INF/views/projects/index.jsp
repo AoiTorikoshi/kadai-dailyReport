@@ -14,11 +14,13 @@
                 <tr>
                     <th class="project_title">プロジェクト名</th>
                     <th class="project_content">プロジェクト詳細</th>
+                    <th class="project_show">プロジェクト表示</th>
                 </tr>
                 <c:forEach var="project" items="${projects}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td class="project_title">${project.title}</td>
                         <td class="project_content">${project.content}</td>
+                        <td class="project_show"><a href="<c:url value='/projects/show?id=${project.id}' />">詳細を表示</a></td>
                     </tr>
                 </c:forEach>
             </tbody>

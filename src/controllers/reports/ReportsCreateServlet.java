@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import models.Employee;
+import models.Project;
 import models.Report;
 import models.validators.ReportValidator;
 import utils.DBUtil;
@@ -52,6 +53,24 @@ public class ReportsCreateServlet extends HttpServlet {
             }
             r.setReport_date(report_date);
 
+            //int id = (int)request.getParameter("select_projects");
+            //em.createNamedQuery("getProjectDetail", Project.class)
+            //        .setParameter("id", id);
+            //r.setProject((Project)request.getParameter("id"));
+
+            int id = Integer.parseInt(request.getParameter("select_project"));
+            List<Project> pList = (List<Project>) request.getSession().getAttribute("project_list");
+            Project selectedProject = null;
+            // セッションに保持されているプロジェクト情報をfor文で繰り返して参照する
+            for (Project p : pList) {
+                if (id == p.getId()) {
+                // 画面で選択したIDとセッションに保持されているIDが一致している場合
+                    selectedProject = p;
+                    break;
+                }
+            }
+
+            r.setProject(selectedProject);
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
 

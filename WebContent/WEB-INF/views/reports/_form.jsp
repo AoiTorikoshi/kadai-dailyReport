@@ -18,6 +18,14 @@
 <c:out value="${sessionScope.login_employee.name}"/>
 <br/><br/>
 
+<label for="project_id">プロジェクト選択</label><br/>
+<select name="select_project">
+    <c:forEach var="project" items="${projects}">
+        <option value="${project.id}"><c:out value="${project.title}"/></option>
+    </c:forEach>
+</select>
+<br/><br/>
+
 <label for="title">タイトル</label><br/>
 <input type="text" name="title" value="${report.title}"/>
 <br/><br/>

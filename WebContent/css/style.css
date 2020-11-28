@@ -168,5 +168,8 @@ table#project_list .project_title{
 }
 
 table#project_list .project_content{
-    width: 70%;
+    width: 50%;
+}
+table#project_list .project_show{
+    width: 20%;
 }

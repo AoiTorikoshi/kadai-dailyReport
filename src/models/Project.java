@@ -17,9 +17,13 @@ import javax.persistence.Table;
             query = "SELECT p FROM Project AS p ORDER BY p.id DESC"
             ),
     @NamedQuery(
-            name = "getProjctsCount",
+            name = "getProjectsCount",
             query = "SELECT COUNT(p) FROM Project AS p"
             ),
+//    @NamedQuery(
+//            name = "getProjectDetail",
+//            query = "SELECT p FROM Project AS p WHERE id = :id"
+//            ),
 })
 @Entity
 public class Project {

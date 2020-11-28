@@ -46,12 +46,12 @@ public class ProjectsIndexServlet extends HttpServlet {
         List<Project> projects = em.createNamedQuery("getAllProjects", Project.class).setFirstResult(15 * (page - 1))
                 .setMaxResults(15).getResultList();
 
-        //long projects_count = (long) em.createNamedQuery("getProjectsCount", Long.class).getSingleResult();
+        long projects_count = (long) em.createNamedQuery("getProjectsCount", Long.class).getSingleResult();
 
         em.close();
 
         request.setAttribute("projects", projects);
-        //request.setAttribute("projects_count", projects_count);
+        request.setAttribute("projects_count", projects_count);
         request.setAttribute("page", page);
         if (request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
