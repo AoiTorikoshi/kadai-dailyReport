@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Project;
 import models.Report;
 import models.validators.ReportValidator;
 import utils.DBUtil;
@@ -42,6 +43,19 @@ public class ReportsUpdateServlet extends HttpServlet {
 
             Report r = em.find(Report.class, (Integer)(request.getSession().getAttribute("report_id")));
 
+            int id = Integer.parseInt(request.getParameter("select_project"));
+            List<Project> pList = (List<Project>) request.getSession().getAttribute("project_list");
+            Project selectedProject = null;
+            // セッションに保持されているプロジェクト情報をfor文で繰り返して参照する
+            for (Project p : pList) {
+                if (id == p.getId()) {
+                // 画面で選択したIDとセッションに保持されているIDが一致している場合
+                    selectedProject = p;
+                    break;
+                }
+            }
+
+            r.setProject(selectedProject);
             r.setReport_date(Date.valueOf(request.getParameter("report_date")));
             r.setTitle(request.getParameter("title"));
             r.setContent(request.getParameter("content"));
